@@ -2,14 +2,16 @@
 
 ## Usage
 
-### vars
+### FlashVars
 
-* server
-* stream
+* server : rtmp server
+* stream : rtmp stream to publish
 
 ### Example
 
-        <embed src="video.swf"
+Raw HTML:
+
+        <embed src="webcam.swf"
                flashvars="server=rtmp://localhost/live&stream=plop"
                bgcolor="#ffffff"
                width="500"
@@ -20,6 +22,15 @@
                allowScriptAccess="always"
                type="application/x-shockwave-flash"
                pluginspage="http://www.macromedia.com/go/getflashplayer" />
+
+With SwfObject:
+
+        var flashvars = {server : "rtmp://localhost/live",
+                         stream : "plop"};
+        var params = {};
+        var attributes = {};
+        swfobject.embedSWF("webcam.swf", "myId", "300", "120", "9.0.0","expressInstall.swf", flashvars, params, attributes);
+
 
 ## Compile
 

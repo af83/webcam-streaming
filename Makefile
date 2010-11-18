@@ -1,5 +1,5 @@
 debug:
-	haxe -debug video.hxml
+	haxe -debug webcam.hxml
 
 release:
-	haxe video.hxml
+	haxe webcam.hxml
