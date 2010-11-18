@@ -36,6 +36,10 @@ class Webcam {
         this.nc.connect(host);
     }
 
+    public function getCam() {
+        return this.cam;
+    }
+
     function onKey( e : flash.events.KeyboardEvent ) {
         ns.send("onMetaData",{ keypress : e.keyCode });
     }

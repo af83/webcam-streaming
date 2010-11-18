@@ -41,25 +41,22 @@ class Main {
     static function main() {
         initTrace();
         haxe.Log.trace = doTrace;
+
+        flash.Lib.current.addEventListener (flash.events.Event.ADDED_TO_STAGE, on_added);
+    }
+
+    static function on_added (_) {
         var server = flash.Lib.current.loaderInfo.parameters.server;
         var stream = flash.Lib.current.loaderInfo.parameters.stream;
         flash.net.NetConnection.defaultObjectEncoding = flash.net.ObjectEncoding.AMF0;
 
-        var cam = flash.media.Camera.getCamera();
-        if (cam == null)
-        {
-            throw "webcam not found";
-        }
-        cam.setMode(640, 480, 15, false);
-        cam.setQuality(0, 100);
-        if( cam == null )
-            doTrace("camera not found");
+        var webcam = new Webcam(server, stream, "live");
+        var cam = webcam.getCam();
+
         var video = new flash.media.Video(cam.width, cam.height);
         video.x = 0;
         video.y = 0;
         video.attachCamera(cam);
         flash.Lib.current.addChild(video);
-
-        var webcam = new Webcam(server, stream, "live");
     }
 }
