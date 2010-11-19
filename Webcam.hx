@@ -40,10 +40,6 @@ class Webcam {
         return this.cam;
     }
 
-    function onKey( e : flash.events.KeyboardEvent ) {
-        ns.send("onMetaData",{ keypress : e.keyCode });
-    }
-
     function onEvent(e) {
         if( e.info.code == "NetConnection.Connect.Success" ) {
             this.ns = new flash.net.NetStream(nc);
