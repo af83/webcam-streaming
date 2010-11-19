@@ -50,13 +50,23 @@ class Main {
         var stream = flash.Lib.current.loaderInfo.parameters.stream;
         flash.net.NetConnection.defaultObjectEncoding = flash.net.ObjectEncoding.AMF0;
 
-        var webcam = new Webcam(server, stream, "live");
-        var cam = webcam.getCam();
-
-        var video = new flash.media.Video(cam.width, cam.height);
-        video.x = 0;
-        video.y = 0;
-        video.attachCamera(cam);
-        flash.Lib.current.addChild(video);
+        try {
+            var webcam = new Webcam(server, stream, "live");
+            var cam = webcam.getCam();
+            var video = new flash.media.Video(cam.width, cam.height);
+            video.x = 0;
+            video.y = 0;
+            video.attachCamera(cam);
+            flash.Lib.current.addChild(video);
+        } catch (e: String) {
+             var trace = new flash.text.TextField();
+             trace.y = 20;
+             trace.thickness = 2;
+             trace.selectable = false;
+             trace.textColor = 0x0000000;
+             trace.mouseEnabled = false;
+             trace.text = e;
+             flash.Lib.current.addChild(trace);
+        }
     }
 }

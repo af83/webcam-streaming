@@ -27,10 +27,10 @@ class Webcam {
         this.file = file;
         this.share = share;
         this.cam = flash.media.Camera.getCamera();
-        this.cam.setMode(640, 480, 15, true);
-        this.mic = flash.media.Microphone.getMicrophone();
         if( this.cam == null )
             throw "Webcam not found";
+        this.cam.setMode(640, 480, 15, true);
+        this.mic = flash.media.Microphone.getMicrophone();
         this.nc = new flash.net.NetConnection();
         this.nc.addEventListener(flash.events.NetStatusEvent.NET_STATUS,onEvent);
         this.nc.connect(host);
