@@ -19,6 +19,7 @@
 class Main {
     static var trace : flash.text.TextField;
     static var bpos : Float = 2;
+    static var webcam : Webcam;
 
     static function initTrace() {
         var mc = flash.Lib.current;
@@ -42,16 +43,18 @@ class Main {
         initTrace();
         haxe.Log.trace = doTrace;
 
-        flash.Lib.current.addEventListener (flash.events.Event.ADDED_TO_STAGE, on_added);
+        flash.Lib.current.addEventListener(flash.events.Event.ADDED_TO_STAGE, on_added);
     }
 
     static function on_added (_) {
         var server = flash.Lib.current.loaderInfo.parameters.server;
         var stream = flash.Lib.current.loaderInfo.parameters.stream;
-        flash.net.NetConnection.defaultObjectEncoding = flash.net.ObjectEncoding.AMF0;
+        var token  = flash.Lib.current.loaderInfo.parameters.token;
+        flash.net.NetConnection.defaultObjectEncoding = flash.net.ObjectEncoding.DEFAULT;
+
 
         try {
-            var webcam = new Webcam(server, stream, "live");
+            webcam = new Webcam(server, stream, "live", token);
             var cam = webcam.getCam();
             var video = new flash.media.Video(cam.width, cam.height);
             video.x = 0;

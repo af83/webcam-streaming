@@ -23,7 +23,7 @@ class Webcam {
     var file : String;
     var share : String;
 
-    public function new(host, file,?share) {
+    public function new(host, file,?share, token) {
         this.file = file;
         this.share = share;
         this.cam = flash.media.Camera.getCamera();
@@ -33,7 +33,7 @@ class Webcam {
         this.mic = flash.media.Microphone.getMicrophone();
         this.nc = new flash.net.NetConnection();
         this.nc.addEventListener(flash.events.NetStatusEvent.NET_STATUS,onEvent);
-        this.nc.connect(host);
+        this.nc.connect(host, token);
     }
 
     public function getCam() {
@@ -43,7 +43,7 @@ class Webcam {
     function onEvent(e) {
         if( e.info.code == "NetConnection.Connect.Success" ) {
             this.ns = new flash.net.NetStream(nc);
-            this.ns.addEventListener(flash.events.NetStatusEvent.NET_STATUS,onEvent);
+            this.ns.addEventListener(flash.events.NetStatusEvent.NET_STATUS, onEvent);
             this.ns.publish(this.file,this.share);
         } else if (e.info.code == "NetStream.Publish.Start") {
             this.ns.attachCamera(this.cam);
@@ -53,8 +53,8 @@ class Webcam {
     }
 
     public function doStop() {
-        if( ns != null )
-            ns.close();
-        nc.close();
+        if( this.ns != null )
+            this.ns.close();
+        this.nc.close();
     }
 }

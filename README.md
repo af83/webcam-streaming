@@ -6,6 +6,7 @@
 
 * server : rtmp server
 * stream : rtmp stream to publish
+* token
 
 ### Example
 
