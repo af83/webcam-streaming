@@ -50,4 +50,4 @@ LGPL 2.1
 Original code haXe Video by Nicolas Cannasse
 
 Copyright (c)2007 Nicolas Cannasse
-Copyright (c)2010 af83
+Copyright (c)2011 af83
