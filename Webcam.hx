@@ -2,7 +2,7 @@
 /*                                                                          */
 /*  haXe Video                                                              */
 /*  Copyright (c)2007 Nicolas Cannasse                                      */
-/*  Copyright (c)2010 af83                                                  */
+/*  Copyright (c)2011 af83                                                  */
 /*                                                                          */
 /* This library is free software; you can redistribute it and/or            */
 /* modify it under the terms of the GNU Lesser General Public               */
@@ -23,13 +23,13 @@ class Webcam {
     var file : String;
     var share : String;
 
-    public function new(host, file,?share, token) {
+    public function new(host, file,?share, token, width, height, fps) {
         this.file = file;
         this.share = share;
         this.cam = flash.media.Camera.getCamera();
         if( this.cam == null )
             throw "Webcam not found";
-        this.cam.setMode(640, 480, 15, true);
+        this.cam.setMode(width, height, fps, true);
         this.mic = flash.media.Microphone.getMicrophone();
         this.nc = new flash.net.NetConnection();
         this.nc.addEventListener(flash.events.NetStatusEvent.NET_STATUS,onEvent);

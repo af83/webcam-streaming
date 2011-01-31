@@ -6,7 +6,10 @@
 
 * server : rtmp server
 * stream : rtmp stream to publish
-* token
+* token  : (optional)
+* camerawidth : default 640
+* cameraheight : default 480
+* camerafps : default 15
 
 ### Example
 
