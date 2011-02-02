@@ -67,7 +67,7 @@ class Main {
         try {
             webcam = new Webcam(server, stream, "live", token, camerawidth, cameraheight, camerafps);
             var cam = webcam.getCam();
-            var video = new flash.media.Video(cam.width, cam.height);
+            var video = new flash.media.Video(camerawidth, cameraheight);
             video.x = 0;
             video.y = 0;
             video.attachCamera(cam);
